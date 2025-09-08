@@ -7,20 +7,24 @@ import DateGreeting from './DateGreeting';
 import SystemStatus from './SystemStatus';
 import { Weather } from './Weather';
 import { Clock } from './Clock';
+import PluginHost from './PluginHost';
 
 interface ConfigProviderProps {
   initialConfig: UserConfig;
+  user?: string;
 }
 
 export const ConfigContext = createContext<{
   config: UserConfig;
+  user: string;
   onConfigChange: (newConfig: UserConfig) => Promise<void>;
 }>({
   config: {} as UserConfig,
+  user: "" as string,
   onConfigChange: async () => {},
 });
 
-export default function ConfigProvider({ initialConfig }: ConfigProviderProps) {
+export default function ConfigProvider({ initialConfig, user = '' }: ConfigProviderProps) {
   const [config, setConfig] = useState<UserConfig>(initialConfig);
 
   useEffect(() => {
@@ -38,6 +42,7 @@ export default function ConfigProvider({ initialConfig }: ConfigProviderProps) {
 
   const handleConfigChange = async (newConfig: UserConfig) => {
     console.log('ConfigProvider: Starting config change with:', newConfig);
+    newConfig.user = user;
     try {
       const response = await fetch('/api/config', {
         method: 'POST',
@@ -62,21 +67,20 @@ export default function ConfigProvider({ initialConfig }: ConfigProviderProps) {
   };
 
   return (
-    <ConfigContext.Provider value={{ config, onConfigChange: handleConfigChange }}>
+    <ConfigContext.Provider value={{ config, user, onConfigChange: handleConfigChange }}>
       <Navigation config={config} onConfigChange={handleConfigChange} />
-      <div className="mt-8">
+      <div className="mt-4 sm:mt-6 lg:mt-8">
         <DateGreeting />
-        <div className="mt-4">
+        <div className="mt-2 sm:mt-4">
           <SystemStatus />
         </div>
       </div>
-      {config.showSearchBar && (
-        <div className="mt-8">
-          <Search />
-        </div>
-      )}
-      <div className="mt-8">
-        <div className="grid grid-cols-3 gap-4">
+      {/* Top-area plugins (e.g., Search) */}
+      <div className="mt-4 sm:mt-6 lg:mt-8">
+        <PluginHost area="top" config={config} />
+      </div>
+      <div className="mt-4 sm:mt-6 lg:mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {config.widgets?.weather?.enabled && (
             <div>
               <Weather />
@@ -87,14 +91,12 @@ export default function ConfigProvider({ initialConfig }: ConfigProviderProps) {
               <Clock />
             </div>
           )}
-          <div>
-            {/* Placeholder for future widget */}
-          </div>
         </div>
       </div>
-      <div className="mt-12">
+      <div className="mt-8 sm:mt-10 lg:mt-12">
         <ContextManager initialConfig={config} />
       </div>
+      {/* Full-width plugins are now rendered via Context items in the grid */}
     </ConfigContext.Provider>
   );
 } 

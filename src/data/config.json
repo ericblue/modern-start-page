@@ -1,77 +1,113 @@
 {
   "contexts": [
     {
-      "id": "personal",
-      "name": "Personal",
+      "id": "default",
+      "name": "Allgemein",
       "categories": [
         {
-          "name": "Media",
+          "name": "Produktivität",
           "displayMode": "icon",
           "links": [
-            { "name": "Netflix", "url": "https://netflix.com", "icon": "Tv" },
-            { "name": "YouTube", "url": "https://youtube.com", "icon": "Youtube" },
-            { "name": "Spotify", "url": "https://spotify.com", "icon": "Music" },
-            { "name": "Twitch", "url": "https://twitch.tv", "icon": "Video" }
+            {
+              "name": "Webmail",
+              "url": "https://webmail.suter.email",
+              "icon": "Mail"
+            },
+            {
+              "name": "Kalender",
+              "url": "https://calendar.suter.email",
+              "icon": "Calendar"
+            },
+            {
+              "name": "Kontakte",
+              "url": "https://contacts.suter.email",
+              "icon": "Contact"
+            }
+          ]
+        },
+        {
+          "name": "Suter-Tools",
+          "displayMode": "icon",
+          "links": [
+            {
+              "name": "Fotos",
+              "url": "https://fotos.suter-burri.ch",
+              "icon": "aperture"
+            },
+            {
+              "name": "Dateien teilen",
+              "url": "https://files.suter-burri.ch",
+              "icon": "download"
+            },
+            {
+              "name": "Passwort Manager",
+              "url": "https://vw.suter-burri.ch",
+              "icon": "Key-Round"
+            }
+          ]
+        },
+        {
+          "name": "Medien",
+          "displayMode": "icon",
+          "links": [
+            {
+              "name": "Blick",
+              "url": "https://blick.ch",
+              "icon": "newspaper"
+            },
+            {
+              "name": "Tages-Anzeiger",
+              "url": "https://www.tagesanzeiger.ch",
+              "icon": "newspaper"
+            },
+            {
+              "name": "YouTube",
+              "url": "https://youtube.com",
+              "icon": "Youtube"
+            },
+            {
+              "name": "Spotify",
+              "url": "https://spotify.com",
+              "icon": "Music"
+            }
           ]
         },
         {
           "name": "Social",
           "displayMode": "icon",
           "links": [
-            { "name": "Twitter", "url": "https://twitter.com", "icon": "Twitter" },
-            { "name": "Reddit", "url": "https://reddit.com", "icon": "MessageSquare" },
-            { "name": "Instagram", "url": "https://instagram.com", "icon": "Image" }
-          ]
-        },
-        {
-          "name": "Tools",
-          "displayMode": "icon",
-          "links": [
-            { "name": "Gmail", "url": "https://mail.google.com", "icon": "Mail" },
-            { "name": "Drive", "url": "https://drive.google.com", "icon": "HardDrive" },
-            { "name": "Calendar", "url": "https://calendar.google.com", "icon": "Calendar" }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "work",
-      "name": "Work",
-      "categories": [
-        {
-          "name": "Development",
-          "displayMode": "icon",
-          "links": [
-            { "name": "GitHub", "url": "https://github.com", "icon": "Github" },
-            { "name": "GitLab", "url": "https://gitlab.com", "icon": "Gitlab" },
-            { "name": "Stack Overflow", "url": "https://stackoverflow.com", "icon": "Code" },
-            { "name": "Dev Docs", "url": "https://devdocs.io", "icon": "BookOpen" }
-          ]
-        },
-        {
-          "name": "Communication",
-          "displayMode": "icon",
-          "links": [
-            { "name": "Slack", "url": "https://slack.com", "icon": "MessageSquare" },
-            { "name": "Teams", "url": "https://teams.microsoft.com", "icon": "Users" },
-            { "name": "Zoom", "url": "https://zoom.us", "icon": "Video" }
-          ]
-        },
-        {
-          "name": "Productivity",
-          "displayMode": "icon",
-          "links": [
-            { "name": "Jira", "url": "https://atlassian.net", "icon": "Kanban" },
-            { "name": "Confluence", "url": "https://confluence.com", "icon": "Book" },
-            { "name": "Notion", "url": "https://notion.so", "icon": "FileText" }
+            {
+              "name": "Instagram",
+              "url": "https://instagram.com",
+              "icon": "Instagram"
+            }
           ]
         }
       ]
     }
   ],
-  "activeContext": "personal",
-  "theme": "Ocean",
+  "activeContext": "default",
+  "theme": "light",
   "gridColumns": 3,
-  "displayMode": "icon",
-  "showCategoryBorders": true
-} 
+  "displayMode": "list",
+  "showCategoryBorders": true,
+  "showSearchBar": true,
+  "widgets": {
+    "weather": {
+      "enabled": false,
+      "useCelsius": false
+    },
+    "clock": {
+      "enabled": false,
+      "showSeconds": false
+    },
+    "iframe": {
+      "enabled": false,
+      "url": ""
+    },
+    "calendar": {
+      "enabled": false,
+      "icsUrl": ""
+    }
+  }
+}

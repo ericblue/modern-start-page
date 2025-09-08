@@ -54,18 +54,18 @@ export default function SystemStatus() {
   }, []);
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('en-US', {
+    return date.toLocaleTimeString('de-DE', {
       hour: 'numeric',
       minute: '2-digit',
       second: '2-digit',
-      hour12: true
+      hour12: false
     });
   };
 
   return (
-    <div className="flex items-center justify-center space-x-6 text-secondary-400">
+    <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6 text-secondary-400 text-sm sm:text-base">
       <div className="flex items-center space-x-2">
-        <Icon name="Clock" size={20} />
+        <Icon name="Clock" size={16} className="sm:w-5 sm:h-5" />
         <span>{formatTime(time)}</span>
       </div>
 
@@ -73,7 +73,8 @@ export default function SystemStatus() {
         <div className="flex items-center space-x-2">
           <Icon 
             name={battery.charging ? "BatteryCharging" : "Battery"} 
-            size={20} 
+            size={16} 
+            className="sm:w-5 sm:h-5"
           />
           <span>{Math.round(battery.level)}%</span>
         </div>
@@ -82,7 +83,8 @@ export default function SystemStatus() {
       <div className="flex items-center space-x-2">
         <Icon 
           name={networkStatus ? "Wifi" : "WifiOff"} 
-          size={20} 
+          size={16} 
+          className="sm:w-5 sm:h-5"
         />
         <span>{networkStatus ? "Online" : "Offline"}</span>
       </div>

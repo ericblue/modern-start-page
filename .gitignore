@@ -51,6 +51,7 @@ $RECYCLE.BIN/
 *.db
 *.sqlite
 *.sqlite3
+./public/*.ics
 
 # Logs
 logs

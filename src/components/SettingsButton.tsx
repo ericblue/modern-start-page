@@ -23,10 +23,11 @@ export default function SettingsButton({ config, onConfigChange }: SettingsButto
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="flex items-center space-x-2 px-3 py-1 rounded bg-secondary-700/50 text-secondary-300 hover:bg-secondary-700"
+        className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1 rounded bg-secondary-700/50 text-secondary-300 hover:bg-secondary-700 text-xs sm:text-sm"
       >
-        <Icon name="Settings2" size={20} />
-        <span>Settings</span>
+        <Icon name="Settings2" size={16} className="sm:w-5 sm:h-5" />
+        <span className="hidden xs:inline">Einstellungen</span>
+        <span className="xs:hidden">⚙️</span>
       </button>
 
       {isModalOpen && (

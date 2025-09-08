@@ -44,15 +44,15 @@ export const Clock = () => {
   const seconds = clock.showSeconds ? `:${time.getSeconds().toString().padStart(2, '0')}` : '';
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-secondary-700/50 rounded-lg">
+    <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-secondary-700/50 rounded-lg">
       <div className="flex-shrink-0">
-        <Icon name="Clock4" size={24} className="text-primary-500" />
+        <Icon name="Clock4" size={20} className="sm:w-6 sm:h-6 text-primary-500" />
       </div>
       <div>
-        <div className="text-2xl font-bold">
+        <div className="text-lg sm:text-xl lg:text-2xl font-bold">
           {hours}:{minutes}{seconds}
         </div>
-        <div className="text-sm text-gray-300">Current Time</div>
+        <div className="text-xs sm:text-sm text-gray-300">Aktuelle Zeit</div>
       </div>
     </div>
   );

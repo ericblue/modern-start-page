@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   app:
     build: .
-    image: ${DOCKER_IMAGE_NAME:-modern-start-page}
+    image: stumpisuter/modern-start-page
     container_name: ${DOCKER_IMAGE_NAME:-modern-start-page}
     ports:
       - "${DOCKER_PORT:-4000}:4000"

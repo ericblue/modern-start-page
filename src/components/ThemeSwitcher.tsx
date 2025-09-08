@@ -36,19 +36,20 @@ export default function ThemeSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-1 rounded bg-secondary-700/50 text-secondary-300 hover:bg-secondary-700"
+        className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1 rounded bg-secondary-700/50 text-secondary-300 hover:bg-secondary-700 text-xs sm:text-sm"
       >
-        <Icon name="Palette" size={20} />
-        <span>{currentTheme.name}</span>
+        <Icon name="Palette" size={16} className="sm:w-5 sm:h-5" />
+        <span className="hidden xs:inline">{currentTheme.name}</span>
+        <span className="xs:hidden">Theme</span>
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 bg-secondary-800 border border-secondary-700 rounded-lg p-2 w-48 shadow-lg">
+        <div className="absolute top-full right-0 mt-2 bg-secondary-800 border border-secondary-700 rounded-lg p-2 w-40 sm:w-48 shadow-lg z-50">
           {themes.map((theme) => (
             <button
               key={theme.name}
               onClick={() => applyTheme(theme)}
-              className={`w-full text-left px-3 py-2 rounded transition-colors duration-200 ${
+              className={`w-full text-left px-2 sm:px-3 py-1 sm:py-2 rounded transition-colors duration-200 text-xs sm:text-sm ${
                 currentTheme.name === theme.name
                   ? 'bg-primary-500/20 text-primary-400'
                   : 'text-secondary-300 hover:bg-secondary-700'

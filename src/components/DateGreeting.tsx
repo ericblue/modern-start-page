@@ -18,19 +18,19 @@ export default function DateGreeting() {
     let newGreeting = '';
 
     if (hour >= 5 && hour < 12) {
-      newGreeting = 'Good morning';
+      newGreeting = 'Guten Morgen';
     } else if (hour >= 12 && hour < 17) {
-      newGreeting = 'Good afternoon';
+      newGreeting = 'Guten Tag';
     } else if (hour >= 17 && hour < 22) {
-      newGreeting = 'Good evening';
+      newGreeting = 'Guten Abend';
     } else {
-      newGreeting = 'Good night';
+      newGreeting = 'Gute Nacht';
     }
 
     setGreeting(newGreeting);
   }, [date]);
 
-  const formattedDate = date.toLocaleDateString('en-US', {
+  const formattedDate = date.toLocaleDateString('de-DE', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
@@ -38,9 +38,9 @@ export default function DateGreeting() {
   });
 
   return (
-    <div className="text-center space-y-2">
-      <p className="text-2xl text-secondary-400">{formattedDate}</p>
-      <h2 className="text-5xl font-bold text-secondary-200">{greeting}</h2>
+    <div className="text-center space-y-1 sm:space-y-2">
+      <p className="text-lg sm:text-xl lg:text-2xl text-secondary-400">{formattedDate}</p>
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary-200">{greeting}</h2>
     </div>
   );
 } 

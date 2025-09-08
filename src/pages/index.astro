@@ -1,24 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Login from '../components/Login.astro';
 import ConfigProvider from '../components/ConfigProvider';
 import type { UserConfig } from '../config/types';
 import { initializeConfig } from '../config/store';
+
+// Simple auth gate using a cookie set by /api/login
+const isAuthed = Astro.cookies.get('msp_auth')?.value === '1';
 
 // Initialize config store and get the current config
 const configStore = await initializeConfig();
 const initialConfig = await configStore.getConfig();
 ---
+{isAuthed ? (
+  <Layout title="Familie Suter">
+    <main class="space-y-6 sm:space-y-8 lg:space-y-12">
+      <!-- Header -->
+      <header class="mb-6 sm:mb-8 lg:mb-12 pr-12 sm:pr-16 lg:pr-20">
+        <h1 class="text-base sm:text-lg lg:text-xl xl:text-2xl font-medium bg-gradient-to-r from-primary-300 to-primary-500 bg-clip-text text-transparent leading-tight max-w-[200px] sm:max-w-[250px] lg:max-w-none">
+          Familie Suter Dashboard
+        </h1>
+      </header>
 
-<Layout title="Modern Start Page">
-  <main class="space-y-12">
-    <!-- Header -->
-    <header class="mb-12 -ml-4 flex items-center gap-2">
-      <img src="/logos/logo-dark/android-chrome-192x192.png" alt="Modern Start Page Logo" class="w-12 h-12" />
-      <h1 class="text-xl font-medium bg-gradient-to-r from-primary-300 to-primary-500 bg-clip-text text-transparent">
-        Modern Start Page
-      </h1>
-    </header>
-
-    <ConfigProvider client:only="react" initialConfig={initialConfig} />
-  </main>
-</Layout>
+      <ConfigProvider client:only="react" initialConfig={initialConfig} user="" />
+    </main>
+  </Layout>
+) : (
+  <Layout title="Login">
+    <Login />
+  </Layout>
+)}

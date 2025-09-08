@@ -3,6 +3,9 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      screens: {
+        'xs': '475px',
+      },
       colors: {
         primary: {
           50: 'var(--primary-50)',
@@ -45,6 +48,10 @@ export default {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
       },
     },
   },

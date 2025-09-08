@@ -1,0 +1,30 @@
+---
+import LoginHeader from './LoginHeader';
+
+const error = Astro.url.searchParams.get('login') === 'failed';
+const redirectTo = Astro.url.pathname + Astro.url.search;
+---
+
+<div class="text-slate-100">
+  <LoginHeader client:only="react" />
+
+  <div class="mt-6 sm:mt-8 lg:mt-10 flex justify-center w-full">
+    <div class="w-full max-w-sm bg-slate-800/60 backdrop-blur rounded-xl shadow-lg border border-slate-700 p-6">
+      <h1 class="text-xl font-medium text-center mb-4">Bitte anmelden</h1>
+      {error && (
+        <div class="mb-4 text-sm text-red-300 bg-red-900/30 border border-red-700 rounded p-2">
+          Falsches Passwort. Bitte versuche es erneut.
+        </div>
+      )}
+      <form method="post" action={`/api/login?redirectTo=${encodeURIComponent(redirectTo)}` } class="space-y-4">
+        <div>
+          <label for="password" class="block text-sm mb-1">Passwort</label>
+          <input id="password" name="password" type="password" required autocomplete="current-password" class="w-full rounded-md bg-slate-900 border border-slate-600 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500" />
+        </div>
+        <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-medium py-2 rounded-md transition">
+          Anmelden
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

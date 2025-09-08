@@ -21,7 +21,7 @@ ENV NODE_ENV=production
 RUN npm run build
 
 # Production stage
-FROM node:23.11.0-slim
+FROM node:lts-slim
 
 # Create non-root user
 RUN groupadd -r appuser && useradd -r -g appuser appuser

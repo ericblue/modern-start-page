@@ -14,6 +14,23 @@ export interface Context {
   id: string;
   name: string;
   categories: Category[];
+  // Optional new unified layout items; if present, takes precedence over categories during rendering
+  items?: Array<
+    | {
+        type: 'category';
+        id: string;
+        // Reference by name to avoid duplicating links in config
+        categoryName: string;
+        colSpan?: number;
+      }
+    | {
+        type: 'plugin';
+        id: string; // instance id
+        pluginId: string; // matches PluginManifest.id
+        pluginConfig?: any; // instance-level config override
+        colSpan?: number;
+      }
+  >;
 }
 
 export interface WidgetSettings {
@@ -24,6 +41,21 @@ export interface WidgetSettings {
   clock: {
     enabled: boolean;
     showSeconds: boolean;
+  };
+  iframe: {
+    enabled: boolean;
+    url: string;
+  };
+  calendar: {
+    enabled: boolean;
+    icsUrl: string;
+    source?: 'ics' | 'caldav';
+    caldav?: {
+      url: string;
+      username: string;
+      password: string;
+      useProxy?: boolean;
+    };
   };
 }
 
@@ -36,6 +68,11 @@ export interface UserConfig {
   showCategoryBorders: boolean;
   showSearchBar: boolean;
   widgets: WidgetSettings;
+  // Optional plugin-specific configurations keyed by plugin id
+  plugins?: Record<string, any> & {
+    search?: { enabled: boolean; engine?: string };
+  };
+  user: string;
 }
 
 declare global {

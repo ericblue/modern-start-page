@@ -7,8 +7,8 @@ export const prerender = false;
 // Define the POST handler
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const configStore = await initializeConfig();
     const newConfig = await request.json();
+    const configStore = await initializeConfig(newConfig.user);
     await configStore.saveConfig(newConfig);
     
     return new Response(JSON.stringify({ success: true }), {

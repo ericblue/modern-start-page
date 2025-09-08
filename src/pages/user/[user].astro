@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Login from '../../components/Login.astro';
+import ConfigProvider from '../../components/ConfigProvider';
+import type { UserConfig } from '../../config/types';
+import { initializeConfig } from '../../config/store';
+
+// Simple auth gate using a cookie set by /api/login
+const isAuthed = Astro.cookies.get('msp_auth')?.value === '1';
+
+// Initialize config store and get the current config
+const { user } = Astro.params;
+const configStore = await initializeConfig(user);
+const initialConfig = await configStore.getConfig();
+---
+{isAuthed ? (
+  <Layout title="Familie Suter">
+    <main class="space-y-12">
+      <!-- Header -->
+      <header class="mb-12 -ml-4 flex items-center gap-2">
+        <h1 class="text-2xl font-medium bg-gradient-to-r from-primary-300 to-primary-500 bg-clip-text text-transparent">
+          Familie Suter Dashboard
+        </h1>
+      </header>
+
+      <ConfigProvider client:only="react" initialConfig={initialConfig} user={user} />
+    </main>
+  </Layout>
+) : (
+  <Layout title="Login">
+    <Login />
+  </Layout>
+)}

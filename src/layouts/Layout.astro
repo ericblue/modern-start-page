@@ -16,15 +16,18 @@ const defaultTheme = themes[0];
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="A modern startpage for your server and new tab page">
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
 		<link rel="icon" type="image/x-icon" href="/logos/logo-dark/favicon.ico" />
 		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="min-h-screen bg-gradient-to-br from-secondary-900 to-primary-900 text-white">
-		<div class="container mx-auto px-4 py-8">
-			<slot />
+	<body class="min-h-screen text-white">
+		<div class="fixed inset-0 bg-[url(/background/20240730_065203.jpg)] bg-center bg-cover bg-no-repeat"></div>
+		<div class="relative min-h-screen backdrop-blur-sm bg-black/40">
+			<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+				<slot />
+			</div>
 		</div>
 	</body>
 </html>
@@ -67,14 +70,67 @@ const defaultTheme = themes[0];
 		font-family: 'Inter var', system-ui, sans-serif;
 		background: var(--background);
 		background-size: 224px;
+		-webkit-text-size-adjust: 100%;
+		-ms-text-size-adjust: 100%;
 	}
 
 	body {
 		background: linear-gradient(to bottom right, var(--secondary-900), var(--primary-900));
+		touch-action: manipulation;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	/* Improve touch targets on mobile */
+	button, a {
+		touch-action: manipulation;
+		min-height: 44px;
+		min-width: 44px;
+	}
+
+	/* Prevent text selection on interactive elements */
+	button, a, input, select, textarea {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	/* Allow text selection in inputs and textareas */
+	input, textarea {
+		-webkit-user-select: text;
+		-moz-user-select: text;
+		-ms-user-select: text;
+		user-select: text;
 	}
 
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+
+	/* Responsive improvements */
+	@media (max-width: 640px) {
+		body {
+			font-size: 14px;
+		}
+	}
+
+	/* Prevent zoom on input focus on iOS */
+	@media screen and (-webkit-min-device-pixel-ratio: 0) {
+		select,
+		textarea,
+		input {
+			font-size: 16px;
+		}
+	}
+
+	/* Better background handling for mobile */
+	@media (max-width: 768px) {
+		body {
+			background-attachment: scroll;
+		}
 	}
 </style>

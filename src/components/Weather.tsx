@@ -43,11 +43,11 @@ export const Weather = () => {
         console.log('API Key:', apiKey);
         
         if (!apiKey) {
-          throw new Error('OpenWeather API key is not configured');
+          throw new Error('OpenWeather API-Schlüssel ist nicht konfiguriert');
         }
 
         const units = widgets.weather.useCelsius ? 'metric' : 'imperial';
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&lang=en&appid=${apiKey}`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&lang=de&appid=${apiKey}`;
         console.log('Weather API URL:', url);
 
         const response = await fetch(url);
@@ -55,7 +55,7 @@ export const Weather = () => {
         if (!response.ok) {
           const errorData = await response.json();
           console.error('Weather API Error:', errorData);
-          throw new Error(`Weather API error: ${errorData.message || response.statusText}`);
+          throw new Error(`Wetter-API-Fehler: ${errorData.message || response.statusText}`);
         }
 
         const data = await response.json();
@@ -70,9 +70,9 @@ export const Weather = () => {
       } catch (err) {
         console.error('Weather fetch error:', err);
         if (err instanceof Error) {
-          setError(`Failed to load weather data: ${err.message}`);
+          setError(`Fehler beim Laden der Wetterdaten: ${err.message}`);
         } else {
-          setError('Failed to load weather data');
+          setError('Fehler beim Laden der Wetterdaten');
         }
       } finally {
         setLoading(false);
@@ -90,15 +90,15 @@ export const Weather = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center p-4">
-        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-500"></div>
+      <div className="flex items-center justify-center p-3 sm:p-4">
+        <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-b-2 border-primary-500"></div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="p-4 text-red-500">
+      <div className="p-3 sm:p-4 text-red-500 text-xs sm:text-sm">
         {error}
       </div>
     );
@@ -109,20 +109,20 @@ export const Weather = () => {
   }
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-secondary-700/50 rounded-lg">
+    <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-secondary-700/50 rounded-lg">
       <div className="flex-shrink-0">
         <img
           src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
           alt={weather.description}
-          className="w-16 h-16"
+          className="w-12 h-12 sm:w-16 sm:h-16"
         />
       </div>
       <div>
-        <div className="text-2xl font-bold">
+        <div className="text-lg sm:text-xl lg:text-2xl font-bold">
           {weather.temperature}°{widgets.weather.useCelsius ? 'C' : 'F'}
         </div>
-        <div className="text-sm text-gray-300 capitalize">{weather.description}</div>
-        <div className="text-sm text-gray-400">{weather.location}</div>
+        <div className="text-xs sm:text-sm text-gray-300 capitalize">{weather.description}</div>
+        <div className="text-xs sm:text-sm text-gray-400">{weather.location}</div>
       </div>
     </div>
   );

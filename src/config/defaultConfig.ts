@@ -1,72 +1,123 @@
 import type { UserConfig } from './types';
 
 export const defaultConfig: UserConfig = {
-  contexts: [
+  "contexts": [
     {
-      id: 'default',
-      name: 'Default',
-      categories: [
+      "id": "default",
+      "name": "Allgemein",
+      "categories": [
         {
-          name: "Productivity",
-          displayMode: "list",
-          links: [
-            { name: "Gmail", url: "https://gmail.com", icon: "Mail" },
-            { name: "Google Calendar", url: "https://calendar.google.com", icon: "Calendar" },
-            { name: "Docs", url: "https://docs.google.com", icon: "FileText" }
+          "name": "Produktivität",
+          "displayMode": "icon",
+          "links": [
+            {
+              "name": "Webmail",
+              "url": "https://webmail.suter.email",
+              "icon": "Mail"
+            },
+            {
+              "name": "Kalender",
+              "url": "https://calendar.suter.email",
+              "icon": "Calendar"
+            },
+            {
+              "name": "Kontakte",
+              "url": "https://contacts.suter.email",
+              "icon": "Contact"
+            }
           ]
         },
         {
-          name: "Development",
-          displayMode: "list",
-          links: [
-            { name: "GitHub", url: "https://github.com", icon: "Github" },
-            { name: "Stack Overflow", url: "https://stackoverflow.com", icon: "HelpCircle" },
-            { name: "GitLab", url: "https://gitlab.com", icon: "Gitlab" }
+          "name": "Suter-Tools",
+          "displayMode": "icon",
+          "links": [
+            {
+              "name": "Fotos",
+              "url": "https://fotos.suter-burri.ch",
+              "icon": "aperture"
+            },
+            {
+              "name": "Dateien teilen",
+              "url": "https://files.suter-burri.ch",
+              "icon": "download"
+            },
+            {
+              "name": "Passwort Manager",
+              "url": "https://vw.suter-burri.ch",
+              "icon": "Key-Round"
+            }
           ]
         },
         {
-          name: "Media",
-          displayMode: "list",
-          links: [
-            { name: "YouTube", url: "https://youtube.com", icon: "Youtube" },
-            { name: "Spotify", url: "https://spotify.com", icon: "Music" },
-            { name: "Netflix", url: "https://netflix.com", icon: "Tv" }
+          "name": "Medien",
+          "displayMode": "icon",
+          "links": [
+            {
+              "name": "Blick",
+              "url": "https://blick.ch",
+              "icon": "newspaper"
+            },
+            {
+              "name": "Tages-Anzeiger",
+              "url": "https://www.tagesanzeiger.ch",
+              "icon": "newspaper"
+            },
+            {
+              "name": "YouTube",
+              "url": "https://youtube.com",
+              "icon": "Youtube"
+            },
+            {
+              "name": "Spotify",
+              "url": "https://spotify.com",
+              "icon": "Music"
+            }
           ]
         },
         {
-          name: "Social",
-          displayMode: "list",
-          links: [
-            { name: "Twitter", url: "https://twitter.com", icon: "Twitter" },
-            { name: "Reddit", url: "https://reddit.com", icon: "MessageSquare" },
-            { name: "Instagram", url: "https://instagram.com", icon: "Instagram" }
-          ]
-        },
-        {
-          name: "Shopping",
-          displayMode: "list",
-          links: [
-            { name: "Amazon", url: "https://amazon.com", icon: "ShoppingCart" },
-            { name: "eBay", url: "https://ebay.com", icon: "Package" }
+          "name": "Social",
+          "displayMode": "icon",
+          "links": [
+            {
+              "name": "Instagram",
+              "url": "https://instagram.com",
+              "icon": "Instagram"
+            }
           ]
         }
       ]
     }
   ],
-  activeContext: 'default',
-  theme: 'light',
-  gridColumns: 3,
-  displayMode: 'list',
-  showCategoryBorders: true,
-  showSearchBar: true,
-  widgets: {
-    weather: {
-      enabled: false,
-      useCelsius: false
+  "activeContext": "default",
+  "theme": "light",
+  "gridColumns": 3,
+  "displayMode": "list",
+  "showCategoryBorders": true,
+  "showSearchBar": true,
+  "user":"",
+  "widgets": {
+    "weather": {
+      "enabled": false,
+      "useCelsius": false
     },
-    clock: {
-      enabled: false,
-      showSeconds: true,
+    "clock": {
+      "enabled": false,
+      "showSeconds": false
     },
+    "iframe": {
+      "enabled": false,
+      "url": ""
+    },
+    "calendar": {
+      "enabled": false,
+      "icsUrl": "",
+      "source": "ics",
+      "caldav": {
+        "url": "",
+        "username": "",
+        "password": "",
+        "useProxy": false
+      }
+    }
   }
 };
