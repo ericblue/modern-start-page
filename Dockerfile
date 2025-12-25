@@ -35,12 +35,6 @@ ENV ASTRO_TELEMETRY_DISABLED=1
 ENV HOST=0.0.0.0
 ENV PORT=4000
 
-# Install minimal debugging tools
-RUN apt-get update && \
-    apt-get install -y net-tools && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 # Copy built app and dependencies from builder
 COPY --from=builder /app /app
 
