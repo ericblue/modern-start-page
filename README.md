@@ -185,6 +185,13 @@ docker run -p 4000:4000 modern-start-page:latest
 
 > **Note:** If you're running Modern Start Page locally, make sure to use the correct port number (default is 4000). For production deployments, use your deployed URL.
 
+## Version History
+
+| Version | Date | Description |
+|---------|------|-------------|
+| [v0.1.0](https://github.com/ericblue/modern-start-page/releases/tag/v0.1.0) | 2025-04-06 | Initial release - Astro/React start page with themes, search engines, widgets, Docker support |
+| v0.2.0 | 2026-04-04 | Security hardening - Alpine base image, Node 22 LTS, pruned build-only deps, standalone server |
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
